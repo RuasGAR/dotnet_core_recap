@@ -1,0 +1,32 @@
+@hostname=localhost
+@port=5126
+@host={{hostname}}:{{port}}
+
+GET http://{{host}}/customers
+Accept: application/json
+
+###
+
+@customerId=8903bfdd-d68f-4e95-8f6f-ee1757d93862
+GET http://{{host}}/customers/{{customerId}}
+Accept:application/json
+
+###
+
+POST http://{{host}}/customers
+Accept: application/json
+Content-Type: application/json
+{
+    "companyName": "Seizi"
+}
+
+###
+
+@customerUpdateId=8903bfdd-d68f-4e95-8f6f-ee1757d93862
+PUT http://{{host}}/customers/{{customerUpdateId}}
+Accept: application/json
+Content-Type: application/json
+{
+    "companyName": "Seizi",
+    "projects": []
+}
