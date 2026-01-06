@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations; // brings also the hinting for [FromBody] and [FromRoute]
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -16,6 +19,9 @@ if (app.Environment.IsDevelopment())
 //this is a middleware
 app.UseHttpsRedirection();
 
+// ----------------------------------------------------------------------------
+
+// Endpoints
 
 app.MapGet("/customers", async (CustomerData data) =>
 {
@@ -34,7 +40,7 @@ app.MapGet("/customers/{id:guid}", async (Guid id, CustomerData data) =>
     return customer; */
 
     await data.GetByIdAsync(id) is Customer customer
-        ? Results.Ok(customer)
+        ? TypedResults.Ok(customer)
         : Results.NotFound()
 
 )
@@ -42,15 +48,17 @@ app.MapGet("/customers/{id:guid}", async (Guid id, CustomerData data) =>
 
 app.MapPost("/customers", async (Customer customer, CustomerData data) =>
 {
+
     // Usually, we would only take the information that we do need inside of customer, instead of using the whole body.
     // It helps with validation
     var newCustomer = customer with { Id = Guid.NewGuid(), Projects = new() };
     await data.AddAsync(newCustomer);
     return Results.Created($"/customers/{newCustomer.Id}", newCustomer);
 })
-.WithName("AddCustomer");
+.WithName("AddCustomer")
+.AddEndpointFilter<ValidateCustomer>();
 
-app.MapPut("/customers/{id:Guid}", async (Guid id, Customer customer, CustomerData data) =>
+app.MapPut("/customers/{id:Guid}", async ([FromRoute(Name = "id")]Guid id, [FromBody]Customer customer, CustomerData data) =>
 {
     var existingCustomer = await data.GetByIdAsync(id);
     if (existingCustomer is null) return Results.NotFound(); //"If" in one line
@@ -59,16 +67,35 @@ app.MapPut("/customers/{id:Guid}", async (Guid id, Customer customer, CustomerDa
 
     await data.UpdateAsync(updatedCustomer);
 
-    return Results.Ok(updatedCustomer);
+    return TypedResults.Ok(updatedCustomer);
 
 })
-.WithName("UpdateCustomer");
+.WithName("UpdateCustomer")
+.AddEndpointFilter<ValidateCustomer>();
 
+// Uses the struct idea and the Data Annotation [As Parameters]
+app.MapDelete("/customers/{id:Guid}",
+    async ([AsParameters] DeleteRequest request) =>
+    {
+        await request.Data.DeleteById(request.Id);
+        // should have some type of logic to check for error or actual completion
+        return Results.NoContent();
+    })
+.WithName("DeleteCustomer")
+.WithParameterValidation();
+
+// ----------------------------------------------------------------------------
+
+// Run the app
 
 app.Run();
 
-public record Customer(Guid Id, string CompanyName, List<Project> Projects);
-public record Project(Guid Id, string ProjectName, Guid CustomerId);
+// -----------------------------------------------------------------------------------------
+
+// Records for Customer and Project
+
+public record Customer(Guid Id, [MinLength(5)]string CompanyName, List<Project> Projects);
+public record Project(Guid Id, [MaxLength(15)]string ProjectName, Guid CustomerId);
 
 // -----------------------------------------------------------------------------------------
 
@@ -125,9 +152,98 @@ public class CustomerData
 
         return Task.CompletedTask;
     }
+
+    public Task DeleteById(Guid id)
+    {
+        if(_customers.Any(c=>c.Id == id))
+        {
+            _customers.RemoveAt(_customers.FindIndex(c => c.Id == id));
+            
+        }
+        return Task.CompletedTask;
+    }
+
+
 }
 
 // just didn't do delete because it's very similar to update
 // the differences are: no customer parameter is needed,  and the Results method used is Results.NoContent();
 
 // OBS: it's a goot practice to always return if the correspondent id passed to deletion actually exists.
+
+// -----------------------------------------------------------------------------------------
+
+// Validation Helpers
+
+// This strategy can get quite verbose, and will also not be responsible to different orders of parameters.
+public class ValidationHelpers
+{
+    internal static async ValueTask<object?> ValidateAddCustomer(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
+    {
+        var customer = context.GetArgument<Customer>(0);
+        if (customer is not null && String.IsNullOrEmpty(customer.CompanyName))
+        {
+            return Results.ValidationProblem(new Dictionary<string, string[]>
+            {
+                { "Id" , new[] { "Id cannot be null." }}
+            });
+        }
+        return await next(context);
+    }
+}
+
+// -------------------------------------------
+
+// Better solution -- Works for both POST and PUT
+// Create one validator per model type
+
+public class  ValidateCustomer: IEndpointFilter 
+{
+    public async ValueTask<object?> InvokeAsync(EndpointFilterInvocationContext context, EndpointFilterDelegate next)
+    {
+        // Using a little bit of LINQ here
+        var customer = context.Arguments.FirstOrDefault(a => a is Customer) as Customer; // can be a problem in case of more than one Customer parameter
+        
+        if (customer is not null && String.IsNullOrEmpty(customer.CompanyName))
+        {
+            return Results.ValidationProblem(new Dictionary<string, string[]>
+            {
+                { "Company Name" , new[] { "CompanyName cannot be empty" }}
+            });
+        }
+
+        return await next(context);
+    }
+}
+
+// -------------------------------------------
+
+// Another approach of validation -- using record structs binded to parameters on a specific route 
+
+public readonly record struct DeleteRequest : IValidatableObject
+{
+    [FromRoute(Name = "id")]
+    [Required] // is a Data Annotation, which are responsible for bringing more validation capabilities
+    public Guid Id { get; init; }
+
+    public CustomerData Data { get; init; }
+
+    //The method for validation result goes inside the struct! 
+
+    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+    {
+        if (Id == Guid.Empty )
+        {
+            yield return new ValidationResult("Id is required.", new[] { nameof(Id) });
+        }
+    }
+
+}
+
+
+
+// Data Annotations: there are a bunch of them, including Url, Regex, Integer Range, String Length, even Phone and Email format annotations
+// THEY DO NOT APPLY THE LOGIC BY THEIR OWN, though. Its purely for indication purposes. They need to be "enforced". 
+// There is, though, a NuGetPackage that enforce that for us, which we'll see briefly.
+
+// Fluent Validation is basically the standard NuGetPackage for validation purposes in .NetCore.

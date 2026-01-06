@@ -30,3 +30,9 @@ Content-Type: application/json
     "companyName": "Seizi",
     "projects": []
 }
+
+###
+
+@customerDeleteId=8903bfdd-d68f-4e95-8f6f-ee1757d93862
+DELETE http://{{host}}/customers/{{customerDeleteId}}
+Accept: application/json

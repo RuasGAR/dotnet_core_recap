@@ -32,3 +32,5 @@ C:\Users\gabri\Desktop\programming_recap\git_reps\dotnet_core\NimblePros.Custome
 C:\Users\gabri\Desktop\programming_recap\git_reps\dotnet_core\NimblePros.Customers\NimblePros.Customers.Web\obj\Debug\net10.0\NimblePros.Customers.Web.pdb
 C:\Users\gabri\Desktop\programming_recap\git_reps\dotnet_core\NimblePros.Customers\NimblePros.Customers.Web\obj\Debug\net10.0\NimblePros.Customers.Web.genruntimeconfig.cache
 C:\Users\gabri\Desktop\programming_recap\git_reps\dotnet_core\NimblePros.Customers\NimblePros.Customers.Web\obj\Debug\net10.0\ref\NimblePros.Customers.Web.dll
+C:\Users\gabri\Desktop\programming_recap\git_reps\dotnet_core\NimblePros.Customers\NimblePros.Customers.Web\bin\Debug\net10.0\MinimalApis.Extensions.dll
+C:\Users\gabri\Desktop\programming_recap\git_reps\dotnet_core\NimblePros.Customers\NimblePros.Customers.Web\bin\Debug\net10.0\MiniValidation.dll
