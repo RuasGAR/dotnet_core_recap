@@ -5,9 +5,12 @@ namespace NimblePros.Customers.Web.Customers;
 
 public static class CustomerEndpoints
 {
+
+
     public static void MapCustomerEndpoints(this WebApplication app)
     {
         // Endpoints
+
 
         // Route Groups
 
@@ -36,8 +39,12 @@ public static class CustomerEndpoints
 
         _customerGroup.MapPost("/", async (Customer customer, CustomerData data) =>
         {
-            var newCustomer = customer with { Id = Guid.NewGuid(), Projects = new() };
+            var newCustomer = customer with { Id = Guid.NewGuid(), Projects = new(), Email = "test@test.com"  };
             await data.AddAsync(newCustomer);
+
+            var customerEmailService = new CustomerEmailService();
+            customerEmailService.SendWelcomeEmail(newCustomer);
+
             return Results.Created($"/customers/{newCustomer.Id}", newCustomer);
         })
         .WithName("AddCustomer");
@@ -51,13 +58,13 @@ public static class CustomerEndpoints
 
             await data.UpdateAsync(updatedCustomer);
 
-            return TypedResults.Ok(updatedCustomer);
+            return TypedResults.Ok(updatedCustomer); 
 
         })
         .WithName("UpdateCustomer");
 
         // Uses the struct idea and the Data Annotation [As Parameters]
-        _customerGroupWithValidation.MapDelete("/{id:Guid}",
+        _customerGroupWithValidation.MapDelete("/customers/{id:Guid}",
             async ([AsParameters] DeleteRequest request) =>
             {
                 await request.Data.DeleteById(request.Id);
@@ -69,7 +76,11 @@ public static class CustomerEndpoints
     }
 }
 
-public record Customer(Guid Id, [MinLength(5)] string CompanyName, List<Project> Projects);
+// -----------------------------------------------------------------------------------------
+
+// Models
+
+public record Customer(Guid Id, [MinLength(5)] string CompanyName, List<Project> Projects, string Email);
 public record Project(Guid Id, [MaxLength(15)] string ProjectName, Guid CustomerId);
 
 // -----------------------------------------------------------------------------------------
@@ -77,12 +88,16 @@ public record Project(Guid Id, [MaxLength(15)] string ProjectName, Guid Customer
 // Can be seen as a service
 public class CustomerData
 {
+
+    // We are using in-memory data storage for simplicity
+
     private readonly Guid _customer1Id = Guid.Parse("8903bfdd-d68f-4e95-8f6f-ee1757d93862"); //Guid.NewGuid();
     private readonly Guid _customer2Id = Guid.Parse("58912e6e-d6d1-4bcc-8a68-3a889a1c0f84");
     private readonly List<Customer> _customers;
 
     public CustomerData()
     {
+        string testEmail = "test@test.com";
 
         _customers = new List<Customer>
         {
@@ -90,13 +105,15 @@ public class CustomerData
             {
                 new Project(Guid.NewGuid(), "Stratocaster", _customer1Id),
                 new Project(Guid.NewGuid(), "Telecaster", _customer2Id)
-            }),
+            }, testEmail
+            ),
 
             new Customer(_customer2Id, "Gibson", new List<Project>
             {
                 new Project(Guid.NewGuid(), "LesPaul", _customer1Id),
                 new Project(Guid.NewGuid(), "SG", _customer2Id)
-            })
+            }, testEmail
+            )
         };
     }
 

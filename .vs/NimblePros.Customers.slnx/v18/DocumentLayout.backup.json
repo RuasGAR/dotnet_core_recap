@@ -3,8 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\gabri\\Desktop\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{37218D1D-C0DA-D8A9-9BE5-58EE7A3E0F86}|NimblePros.Customers.Web\\NimblePros.Customers.Web.csproj|c:\\users\\gabri\\desktop\\programming_recap\\git_reps\\dotnet_core\\nimblepros.customers\\nimblepros.customers.web\\customers\\customerendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37218D1D-C0DA-D8A9-9BE5-58EE7A3E0F86}|NimblePros.Customers.Web\\NimblePros.Customers.Web.csproj|solutionrelative:nimblepros.customers.web\\customers\\customerendpoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{37218D1D-C0DA-D8A9-9BE5-58EE7A3E0F86}|NimblePros.Customers.Web\\NimblePros.Customers.Web.csproj|c:\\users\\gabri\\desktop\\programming_recap\\git_reps\\dotnet_core\\nimblepros.customers\\nimblepros.customers.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{37218D1D-C0DA-D8A9-9BE5-58EE7A3E0F86}|NimblePros.Customers.Web\\NimblePros.Customers.Web.csproj|solutionrelative:nimblepros.customers.web\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{37218D1D-C0DA-D8A9-9BE5-58EE7A3E0F86}|NimblePros.Customers.Web\\NimblePros.Customers.Web.csproj|c:\\users\\gabri\\desktop\\programming_recap\\git_reps\\dotnet_core\\nimblepros.customers\\nimblepros.customers.web\\customers\\validatecustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{37218D1D-C0DA-D8A9-9BE5-58EE7A3E0F86}|NimblePros.Customers.Web\\NimblePros.Customers.Web.csproj|solutionrelative:nimblepros.customers.web\\customers\\validatecustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,17 +22,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ValidateCustomer.cs",
+              "DocumentMoniker": "C:\\Users\\gabri\\Desktop\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\Customers\\ValidateCustomer.cs",
+              "RelativeDocumentMoniker": "NimblePros.Customers.Web\\Customers\\ValidateCustomer.cs",
+              "ToolTip": "C:\\Users\\gabri\\Desktop\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\Customers\\ValidateCustomer.cs",
+              "RelativeToolTip": "NimblePros.Customers.Web\\Customers\\ValidateCustomer.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T03:13:58.86Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "CustomerEndpoints.cs",
+              "DocumentMoniker": "C:\\Users\\gabri\\Desktop\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\Customers\\CustomerEndpoints.cs",
+              "RelativeDocumentMoniker": "NimblePros.Customers.Web\\Customers\\CustomerEndpoints.cs",
+              "ToolTip": "C:\\Users\\gabri\\Desktop\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\Customers\\CustomerEndpoints.cs",
+              "RelativeToolTip": "NimblePros.Customers.Web\\Customers\\CustomerEndpoints.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwBcAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T03:02:51.97Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\gabri\\Desktop\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\Program.cs",
               "RelativeDocumentMoniker": "NimblePros.Customers.Web\\Program.cs",
               "ToolTip": "C:\\Users\\gabri\\Desktop\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\Program.cs",
               "RelativeToolTip": "NimblePros.Customers.Web\\Program.cs",
-              "ViewState": "AgIAANgAAAAAAAAAAADwv+EAAABnAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-01-05T12:55:50.231Z",
               "EditorCaption": ""
