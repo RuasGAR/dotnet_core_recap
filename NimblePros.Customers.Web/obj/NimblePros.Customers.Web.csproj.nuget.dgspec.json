@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gabri\\Desktop\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\NimblePros.Customers.Web.csproj": {}
+    "C:\\Users\\gabri\\Desktop\\Programação\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\NimblePros.Customers.Web.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gabri\\Desktop\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\NimblePros.Customers.Web.csproj": {
+    "C:\\Users\\gabri\\Desktop\\Programação\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\NimblePros.Customers.Web.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gabri\\Desktop\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\NimblePros.Customers.Web.csproj",
+        "projectUniqueName": "C:\\Users\\gabri\\Desktop\\Programação\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\NimblePros.Customers.Web.csproj",
         "projectName": "NimblePros.Customers.Web",
-        "projectPath": "C:\\Users\\gabri\\Desktop\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\NimblePros.Customers.Web.csproj",
+        "projectPath": "C:\\Users\\gabri\\Desktop\\Programação\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\NimblePros.Customers.Web.csproj",
         "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gabri\\Desktop\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\obj\\",
+        "outputPath": "C:\\Users\\gabri\\Desktop\\Programação\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

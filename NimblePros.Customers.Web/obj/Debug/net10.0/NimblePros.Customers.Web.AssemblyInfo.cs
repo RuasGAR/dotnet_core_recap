@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NimblePros.Customers.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0fa9bb1b2a19bc1df52656c2e184e1431e9ef77")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6f128cc619721bb89a4f46f4523b356504c5a234")]
 [assembly: System.Reflection.AssemblyProductAttribute("NimblePros.Customers.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NimblePros.Customers.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

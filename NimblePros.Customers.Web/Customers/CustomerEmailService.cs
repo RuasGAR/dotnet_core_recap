@@ -4,7 +4,7 @@ using NimblePros.Customers.Web.Customers;
 
 namespace NimblePros.Customers.Web.Customers
 {
-    internal class CustomerEmailService
+    public class CustomerEmailService : ICustomerEmailService
     {
         private readonly IEmailMessageFactory _emailMessageFactory;
         private readonly IEmailSenderService _emailSenderService;
@@ -17,7 +17,7 @@ namespace NimblePros.Customers.Web.Customers
             _emailSenderService = emailSenderService;
         }
 
-        internal async Task SendWelcomeEmail(Customer newCustomer)
+        public async Task SendWelcomeEmail(Customer newCustomer)
         {
 
             string from = "crazy_dotnet";
@@ -34,6 +34,7 @@ namespace NimblePros.Customers.Web.Customers
     }
 }
 
+// Email Sender Services -----------------------------------------------------------------------------------
 
 public class MailKitEmailSenderService : IEmailSenderService
 {
@@ -58,6 +59,25 @@ public class MailKitEmailSenderService : IEmailSenderService
     }
 }
 
+// Service for generating email messages in development environment
+
+public class ConsoleOnlyEmailSenderService : IEmailSenderService
+{
+    public Task SendEmailAsync(string from, string to, string subject, string body)
+    {
+        // Simulate sending email by writing to console
+
+        Console.WriteLine("Simulated Email Sending:");
+        Console.WriteLine($"From: {from}");
+        Console.WriteLine($"To: {to}");
+        Console.WriteLine($"Subject: {subject}");
+        Console.WriteLine($"Body: {body}");
+
+        return Task.CompletedTask;
+    }
+}
+
+// ----------------------------------------------------------------------------------------------------
 
 public class EmailMessageFactory : IEmailMessageFactory
 {
@@ -68,9 +88,6 @@ public class EmailMessageFactory : IEmailMessageFactory
         return body;
     }
 }
-
-
-
 
 
     

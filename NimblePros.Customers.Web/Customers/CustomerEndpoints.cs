@@ -37,13 +37,13 @@ public static class CustomerEndpoints
         )
         .WithName("GetCustomerById");
 
-        _customerGroup.MapPost("/", async (Customer customer, CustomerData data) =>
+        _customerGroup.MapPost("/", async (Customer customer, CustomerData data, ICustomerEmailService customerEmailService) =>
         {
             var newCustomer = customer with { Id = Guid.NewGuid(), Projects = new(), Email = "test@test.com"  };
+            
             await data.AddAsync(newCustomer);
 
-            var customerEmailService = new CustomerEmailService();
-            customerEmailService.SendWelcomeEmail(newCustomer);
+            await customerEmailService.SendWelcomeEmail(newCustomer);
 
             return Results.Created($"/customers/{newCustomer.Id}", newCustomer);
         })
