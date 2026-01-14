@@ -22,47 +22,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 48,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "MailKitEmailSenderService.cs",
-              "DocumentMoniker": "C:\\Users\\gabri\\Desktop\\Programa\u00E7\u00E3o\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\Customers\\MailKitEmailSenderService.cs",
-              "RelativeDocumentMoniker": "NimblePros.Customers.Web\\Customers\\MailKitEmailSenderService.cs",
-              "ToolTip": "C:\\Users\\gabri\\Desktop\\Programa\u00E7\u00E3o\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\Customers\\MailKitEmailSenderService.cs",
-              "RelativeToolTip": "NimblePros.Customers.Web\\Customers\\MailKitEmailSenderService.cs",
-              "ViewState": "AgIAAAcAAAAAAAAAAAAgwA8AAAAvAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-14T00:45:22.99Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\gabri\\Desktop\\Programa\u00E7\u00E3o\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\appsettings.json",
-              "RelativeDocumentMoniker": "NimblePros.Customers.Web\\appsettings.json",
-              "ToolTip": "C:\\Users\\gabri\\Desktop\\Programa\u00E7\u00E3o\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\appsettings.json",
-              "RelativeToolTip": "NimblePros.Customers.Web\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-01-14T00:45:11.588Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\gabri\\Desktop\\Programa\u00E7\u00E3o\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\Program.cs",
-              "RelativeDocumentMoniker": "NimblePros.Customers.Web\\Program.cs",
-              "ToolTip": "C:\\Users\\gabri\\Desktop\\Programa\u00E7\u00E3o\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\Program.cs",
-              "RelativeToolTip": "NimblePros.Customers.Web\\Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-12T23:59:14.594Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
@@ -246,6 +207,43 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{6a22fc8f-6c1e-5388-aa3d-9dc8ddb2d262}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MailKitEmailSenderService.cs",
+              "DocumentMoniker": "C:\\Users\\gabri\\Desktop\\Programa\u00E7\u00E3o\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\Customers\\MailKitEmailSenderService.cs",
+              "RelativeDocumentMoniker": "NimblePros.Customers.Web\\Customers\\MailKitEmailSenderService.cs",
+              "ToolTip": "C:\\Users\\gabri\\Desktop\\Programa\u00E7\u00E3o\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\Customers\\MailKitEmailSenderService.cs",
+              "RelativeToolTip": "NimblePros.Customers.Web\\Customers\\MailKitEmailSenderService.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAgwA8AAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-14T00:45:22.99Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\gabri\\Desktop\\Programa\u00E7\u00E3o\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\appsettings.json",
+              "RelativeDocumentMoniker": "NimblePros.Customers.Web\\appsettings.json",
+              "ToolTip": "C:\\Users\\gabri\\Desktop\\Programa\u00E7\u00E3o\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\appsettings.json",
+              "RelativeToolTip": "NimblePros.Customers.Web\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-01-14T00:45:11.588Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\gabri\\Desktop\\Programa\u00E7\u00E3o\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\Program.cs",
+              "RelativeDocumentMoniker": "NimblePros.Customers.Web\\Program.cs",
+              "ToolTip": "C:\\Users\\gabri\\Desktop\\Programa\u00E7\u00E3o\\programming_recap\\git_reps\\dotnet_core\\NimblePros.Customers\\NimblePros.Customers.Web\\Program.cs",
+              "RelativeToolTip": "NimblePros.Customers.Web\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-12T23:59:14.594Z",
+              "EditorCaption": ""
             }
           ]
         }

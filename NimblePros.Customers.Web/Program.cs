@@ -1,7 +1,9 @@
 using NimblePros.Customers.Web.Customers; // Namespace loaded
 
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
 builder.Services.AddSingleton<CustomerData>();
 
