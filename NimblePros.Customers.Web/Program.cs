@@ -4,6 +4,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddOpenApi();
 builder.Services.AddSingleton<CustomerData>();
+
+// Addind config service
+var mailSettings = builder.Configuration.GetSection(nameof(MailSettings)).Get<MailSettings>();
+builder.Services.AddSingleton(mailSettings);
+
+
 builder.Services.AddTransient<IEmailMessageFactory, EmailMessageFactory>();
 
 if (builder.Environment.IsDevelopment())

@@ -36,29 +36,6 @@ namespace NimblePros.Customers.Web.Customers
 
 // Email Sender Services -----------------------------------------------------------------------------------
 
-public class MailKitEmailSenderService : IEmailSenderService
-{
-    public async Task SendEmailAsync(string from, string to, string subject, string body)
-    {
-        using (SmtpClient client = new SmtpClient())
-        {
-            client.Connect("localhost", 25, false);
-            var message = new MimeMessage();
-            message.From.Add(new MailboxAddress(from, from));
-            message.To.Add(new MailboxAddress(to, to));
-            message.Subject = subject;
-            message.Body = new TextPart { Text = body };
-
-            // Email sending logic would go here
-            await client.SendAsync(message);
-            Console.WriteLine("Welcome email sent.");
-
-            client.Disconnect(true);
-
-        }
-    }
-}
-
 // Service for generating email messages in development environment
 
 public class ConsoleOnlyEmailSenderService : IEmailSenderService
@@ -88,7 +65,6 @@ public class EmailMessageFactory : IEmailMessageFactory
         return body;
     }
 }
-
 
     
 // do not respect SINGLE RESPONSABILITY and OPEN-CLOSED SOLID principles 
