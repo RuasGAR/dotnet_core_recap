@@ -1,11 +1,17 @@
 using NimblePros.Customers.Web.Customers; // Namespace loaded
+using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add EF Core Services to the container
+var connString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(connString));
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi();
-builder.Services.AddSingleton<CustomerData>();
+builder.Services.AddScoped<ICustomerData, EFCoreCostumerData>();
 
 // Addind config service
 var mailSettings = builder.Configuration.GetSection(nameof(MailSettings)).Get<MailSettings>();
@@ -23,7 +29,6 @@ else
     builder.Services.AddTransient<IEmailSenderService, MailKitEmailSenderService>();
 }
 builder.Services.AddTransient<ICustomerEmailService, CustomerEmailService>();
-builder.Services.AddTransient<CustomerEmailService>();
 
 
 var app = builder.Build();
@@ -41,3 +46,12 @@ app.MapCustomerEndpoints();
 
 app.Run();
 
+
+static async Task SeedDatabase(WebApplication app)
+{
+    using var scope = app.Services.CreateScope();
+    var services = scope.ServiceProvider;
+
+    var context = services.GetRequiredService<AppDbContext>();
+    context.Database.EnsureCreated();
+}

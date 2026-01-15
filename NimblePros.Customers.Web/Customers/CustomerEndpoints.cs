@@ -21,27 +21,27 @@ public static class CustomerEndpoints
 
         // Routes
 
-        _customerGroup.MapGet("/", async (CustomerData data) =>
+        _customerGroup.MapGet("/", async (ICustomerData data) =>
         {
-            var customers = await data.ListAsync();
+            var customers = await data.List();
             return customers;
         })
         .WithName("ListCustomers");
 
-        _customerGroup.MapGet("/{id:guid}", async (Guid id, CustomerData data) =>
+        _customerGroup.MapGet("/{id:guid}", async (Guid id, ICustomerData data) =>
 
-            await data.GetByIdAsync(id) is Customer customer
+            await data.GetById(id) is Customer customer
                 ? TypedResults.Ok(customer)
                 : Results.NotFound()
 
         )
         .WithName("GetCustomerById");
 
-        _customerGroup.MapPost("/", async (Customer customer, CustomerData data, ICustomerEmailService customerEmailService) =>
+        _customerGroup.MapPost("/", async (Customer customer, ICustomerData data, ICustomerEmailService customerEmailService) =>
         {
-            var newCustomer = customer with { Id = Guid.NewGuid(), Projects = new(), Email = "test@test.com"  };
+            var newCustomer = customer with { Id = Guid.NewGuid(), Projects = new(), EmailAddress = "test@test.com"  };
             
-            await data.AddAsync(newCustomer);
+            await data.Add(newCustomer);
 
             await customerEmailService.SendWelcomeEmail(newCustomer);
 
@@ -49,14 +49,14 @@ public static class CustomerEndpoints
         })
         .WithName("AddCustomer");
 
-        _customerGroup.MapPut("/{id:Guid}", async ([FromRoute(Name = "id")] Guid id, [FromBody] Customer customer, CustomerData data) =>
+        _customerGroup.MapPut("/{id:Guid}", async ([FromRoute(Name = "id")] Guid id, [FromBody] Customer customer, ICustomerData data) =>
         {
-            var existingCustomer = await data.GetByIdAsync(id);
+            var existingCustomer = await data.GetById(id);
             if (existingCustomer is null) return Results.NotFound(); //"If" in one line
 
             var updatedCustomer = existingCustomer with { CompanyName = customer.CompanyName, Projects = customer.Projects };
 
-            await data.UpdateAsync(updatedCustomer);
+            await data.Update(id, updatedCustomer);
 
             return TypedResults.Ok(updatedCustomer); 
 
@@ -76,93 +76,13 @@ public static class CustomerEndpoints
     }
 }
 
-// -----------------------------------------------------------------------------------------
-
-// Models
-
-public record Customer(Guid Id, [MinLength(5)] string CompanyName, List<Project> Projects, string Email);
-public record Project(Guid Id, [MaxLength(15)] string ProjectName, Guid CustomerId);
-
-// -----------------------------------------------------------------------------------------
-
-// Can be seen as a service
-public class CustomerData
-{
-
-    // We are using in-memory data storage for simplicity
-
-    private readonly Guid _customer1Id = Guid.Parse("8903bfdd-d68f-4e95-8f6f-ee1757d93862"); //Guid.NewGuid();
-    private readonly Guid _customer2Id = Guid.Parse("58912e6e-d6d1-4bcc-8a68-3a889a1c0f84");
-    private readonly List<Customer> _customers;
-
-    public CustomerData()
-    {
-        string testEmail = "test@test.com";
-
-        _customers = new List<Customer>
-        {
-            new Customer(_customer1Id,"Fender", new List<Project>
-            {
-                new Project(Guid.NewGuid(), "Stratocaster", _customer1Id),
-                new Project(Guid.NewGuid(), "Telecaster", _customer2Id)
-            }, testEmail
-            ),
-
-            new Customer(_customer2Id, "Gibson", new List<Project>
-            {
-                new Project(Guid.NewGuid(), "LesPaul", _customer1Id),
-                new Project(Guid.NewGuid(), "SG", _customer2Id)
-            }, testEmail
-            )
-        };
-    }
-
-    public async Task<List<Customer>> ListAsync()
-    {
-        return _customers;
-    }
-
-    public Task<Customer?> GetByIdAsync(Guid id)
-    {
-        return Task.FromResult(_customers.FirstOrDefault(c => c.Id == id));
-    }
-
-    public Task AddAsync(Customer newCustomer)
-    {
-        _customers.Add(newCustomer);
-        return Task.CompletedTask;
-    }
-
-    public Task UpdateAsync(Customer customer)
-    {
-
-        if (_customers.Any(c => c.Id == customer.Id))
-        {
-            var index = _customers.FindIndex(c => c.Id == customer.Id);
-            _customers[index] = customer;
-        }
-
-        return Task.CompletedTask;
-    }
-
-    public Task DeleteById(Guid id)
-    {
-        if (_customers.Any(c => c.Id == id))
-        {
-            _customers.RemoveAt(_customers.FindIndex(c => c.Id == id));
-
-        }
-        return Task.CompletedTask;
-    }
-}
-
 public readonly record struct DeleteRequest : IValidatableObject
 {
     [FromRoute(Name = "id")]
     [Required] // is a Data Annotation, which are responsible for bringing more validation capabilities
     public Guid Id { get; init; }
 
-    public CustomerData Data { get; init; }
+    public ICustomerData Data { get; init; }
 
     //The method for validation result goes inside the struct! 
 
